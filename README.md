@@ -18,3 +18,10 @@
 **2021-06-24**<br/>
 1. Row Data 수신 완료
 2. Row Data를 가공해서 원하는 데이터 준비(상보필터)
+
+**2021-06-26**<br/>
+1. Row Data 가공완료
+2. Time Scheduler 구현
+   -> Activate method
+3. Idel 구현
+   -> Get IMU Data
