@@ -25,3 +25,8 @@
    -> Activate method
 3. Idel 구현
    -> Get IMU Data
+   
+**2021-06-26**<br/>
+1. Yaw, Pitch, Roll Data 전처리 완료
+2. Kalman filter를 적용해서 필터링 완료
+3. 상보필터는 의미가 없다고 판단하여 사용하지 않음
