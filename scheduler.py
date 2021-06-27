@@ -16,14 +16,15 @@ def operation_5ms():
 
     pass
 def operation_10ms():
-    if data == []:
-        pass
-    else:
-        print(int(data[0]),int(data[1]),int(data[2])) # yaw pitch roll
+    
+        
     pass
     #list
 def operation_50ms():
-
+    if data == []:
+        pass
+    else:
+        print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
     pass
     #list
 def operation_100ms():
@@ -60,12 +61,11 @@ def idle():
 
 class Scheduler:
     def idleRun(self):
+        program_initialize()
         while 1:
             idle()
 
-
     def run(self):
-        program_initialize()
         while 1:
             timerCounter()
             if timerCount1ms % 5 == 0:
