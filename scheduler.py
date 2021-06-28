@@ -83,7 +83,7 @@ class Scheduler:
         global ani2
         global ani3
         def func_animate(i):
-            x1 = np.linspace(0, 1000*np.pi, 10000)
+            x1 = np.linspace(0, time.time(), 100)
             if data == []:
                 y1 = 0
             else:
@@ -92,7 +92,7 @@ class Scheduler:
             return line,
 
         def func_animate1(i):
-            x2 = np.linspace(0, 1000*np.pi, 10000)
+            x2 = np.linspace(0, time.time(), 100)
             if data == []:
                 y2 = 0
             else:
@@ -103,7 +103,7 @@ class Scheduler:
             return line2,
 
         def func_animate2(i):
-            x3 = np.linspace(0, 1000*np.pi, 10000)
+            x3 = np.linspace(0, time.time(), 100)
             if data == []:
                 y3 = 0
             else:
@@ -123,11 +123,8 @@ class Scheduler:
         line, = ax.plot(x1, y1)
         line2, = ax.plot(x2, y2)
         line3, = ax.plot(x3, y3)
-        plt.axis([0, 50, -100, 100])
+        plt.axis([0, 100, -100, 100])
         ani = FuncAnimation(figure, func_animate, frames=10, interval=50)
-
-
-        
         ani2 = FuncAnimation(figure, func_animate1, frames=10, interval=50)
         ani3 = FuncAnimation(figure, func_animate2, frames=10, interval=50)
         plt.show()
