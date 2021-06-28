@@ -7,7 +7,7 @@ import kalman
 
 
 Radian_To_Degree = 180 / math.pi
-
+ALPHA = 0.04
 gyro_sen = 17179869
 
 gyro_sum = 0
@@ -126,6 +126,6 @@ class Get_Serial:
         return [R, P, Y]
        
 
-   
+        
     
 
