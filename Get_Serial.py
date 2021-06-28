@@ -7,7 +7,7 @@ import kalman
 
 
 Radian_To_Degree = 180 / math.pi
-
+ALPHA = 0.04
 gyro_sen = 17179869
 
 gyro_sum = 0
@@ -124,8 +124,3 @@ class Get_Serial:
         Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*17, GZ, dt))
 
         return [R, P, Y]
-       
-
-   
-    
-
