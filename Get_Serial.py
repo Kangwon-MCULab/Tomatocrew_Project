@@ -121,9 +121,9 @@ class Get_Serial:
 
         R = round(self.Roll.getKalmanAngle(AngleAX, GX, dt))
         P = round(self.Pitch.getKalmanAngle(AngleAY, GY, dt))
-        Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*17, GZ, dt))
+        Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*16.5, GZ, dt))
 
-        return [R, P, Y]
+        return [R, P, Y%360]
        
 
         
