@@ -6,7 +6,7 @@ class walking:
 
     def walking(self,data):
         
-        if data>10 :
+        if data<10 :
             self.count += 1
         return self.count
 

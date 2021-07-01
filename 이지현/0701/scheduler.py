@@ -5,9 +5,23 @@ import numpy as np
  
 timerCount1ms=0
 global data
+global  R_data
+R_data=[]
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
 
+def operation_10us():
+    end = time.time()
+
+    R_data.append(data[0])
+    R=np.array(R_data)
+  
+    np.save('R_data',R)
+    data2=np.load('R_data.npy')
+    if end==1:#걷기 주기 끝나는 시간
+        print(data2)
+        pass
+    pass
 def operation_1ms():
 
     pass
@@ -65,6 +79,8 @@ class Scheduler:
     def run(self):
         while 1:
             timerCounter()
+            if timerCount1ms % 0.001 == 0:
+                operation_10us()
             if timerCount1ms % 5 == 0:
                 operation_5ms()
             if timerCount1ms % 10 == 0:
