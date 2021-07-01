@@ -4,6 +4,7 @@ import scheduler
 from multiprocessing import Process
 import threading
 import Realplot
+import walking
 
 
 
@@ -25,6 +26,7 @@ if __name__ == '__main__':
     DataPlotting.start()
     print("ploting start")
 
+  
 
 
 

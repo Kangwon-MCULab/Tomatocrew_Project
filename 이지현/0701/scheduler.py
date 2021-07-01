@@ -2,9 +2,14 @@ import time
 import os
 import Get_Serial
 import numpy as np
+import walking
  
 timerCount1ms=0
 global data
+global walkingdetect
+global a
+walkingdetect = walking()
+a=walkingdetect.walking(data[1])
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
 
@@ -23,9 +28,14 @@ def operation_50ms():
         pass
     else:
         print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
+        
     pass
     #list
 def operation_100ms():
+    if data == []:
+        pass
+    else:
+        print(a)
 
     pass
     #list
