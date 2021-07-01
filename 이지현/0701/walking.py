@@ -1,17 +1,13 @@
 
-
-#데이터 받아오기
-#몇 번 걸었는지 분석하기
-#Threshold값 정하기
-
-#데이터 받아오기
 class walking:
+    
+    def __init__(self):
+      self.count=0
 
-
-    def walking(self,data,count):
+    def walking(self,data):
         
         if data>10 :
-                count += 1
-        return count
+            self.count += 1
+        return self.count
 
 
