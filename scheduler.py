@@ -34,7 +34,6 @@ def operation_500ms():
 
     #list  
 def operation_1000ms():
-
     pass
     #list
 
