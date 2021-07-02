@@ -10,7 +10,7 @@ import walk
  
 timerCount1ms=0
 data = [0,0,0]
-serial = Get_Serial.Get_Serial()
+serial = chan_Get_Serial.Get_Serial()
 walking = walk.detectwalk()
 
 def operation_1ms():
@@ -28,17 +28,17 @@ def operation_50ms():
         pass
     else:
         print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
+        walking.detecting(data[2])
     pass 
     #list
 def operation_100ms():
-    #walking.detecting(data[0])
     pass
     #list
 def operation_500ms():
     pass 
     #list  
 def operation_1000ms():
-    #print(walking.get_conut())
+    print(walking.get_conut())
     pass
     #list
 
