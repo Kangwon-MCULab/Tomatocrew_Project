@@ -1,43 +1,28 @@
 import numpy as np
 import time
-from openpyxl import Workbook
-
-class Walking():
-    start = time.time()
+start = time.time()
 
 def __init__(self,data):
     self.data = data
-
-def datamanage(self):
-    '''openpyxl 모듈 설치'''
+    
+def datamanage():
     n = 40 # 주기 / 0.00001__현재는 임의로 지정
-    a = np.zeros((3,n)) #행렬 초기화
-    f = open('C:\Users\MCU\Tomatocrew_Project-2')
-
-    #write_wb = Workbook()
-
-    #write_ws = write_wb.active
+    a = np.zeros((1,n)) #행렬 초기화
+    f = open('data.txt')
 
     while 1:
-        a[0].append(self.data[0])
-        a[1].append(self.data[1])
-        a[2].append(self.data[2])
+        a.append(self.data[1])
         f.write(self.data[1])
 
-        #write_ws['A'] = self.data[0]
-        #write_ws['B'] = self.data[1]
-        #write_ws['c'] = self.data[2]
-        #write_wb.save("C:\Users\MCU\Tomatocrew_Project-2")
 
     
 
-def datadiscriminate(self):
+def datadiscriminate():
     while 1:
         data_1 = 0
         data_2 = 0
         data_3 = 0
         data_4 = 0
-        #기울기
         m1 = 0
         m2 = 0
         m3 = 0
@@ -65,5 +50,14 @@ def datadiscriminate(self):
             
         
         if(m1>0 and m2<0 and m3>0):
-            count = count + 1 
-            print("=======================",count,"==============================")
+
+
+
+def walking(self,m1,m2,m3):
+    self.count==0
+        
+        if(m1>0 and m2<0 and m3>0):
+            
+            self.count += 1
+                
+        return self.count
