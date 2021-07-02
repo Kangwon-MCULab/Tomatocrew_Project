@@ -2,7 +2,8 @@ import numpy as np
 import time
 from openpyxl import Workbook
 
-start = time.time()
+class Walking():
+    start = time.time()
 
 def __init__(self,data):
     self.data = data
