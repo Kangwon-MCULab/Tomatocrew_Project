@@ -4,6 +4,8 @@ import Get_Serial
 import numpy as np
  
 timerCount1ms=0
+global ee
+ee=0
 global data
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
@@ -51,9 +53,19 @@ def timerCounter():
     time.sleep(0.001)
 
 def idle():
+    global ee
+    ee = 1 + ee
     global data
     global serial
+    # if(data[0] == 0)and (data[1]==0)and(data[2]==0):
+    #     pass
+   # else:
+    start = time.time()
     data = serial.get_data()
+    if(ee == 5000):
+        end=time.time()
+        print(end - start)
+        
     pass
 
 class Scheduler:

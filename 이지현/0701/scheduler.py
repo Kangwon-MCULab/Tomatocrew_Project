@@ -6,10 +6,8 @@ import walking
  
 timerCount1ms=0
 global data
-global walkingdetect
-global a
-walkingdetect = walking()
-a=walkingdetect.walking(data[1])
+global count
+count=0
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
 
@@ -32,10 +30,12 @@ def operation_50ms():
     pass
     #list
 def operation_100ms():
-    if data == []:
-        pass
-    else:
-        print(a)
+
+    global walkingdetect
+    global a
+    walkingdetect =walking.walking()
+    a=walkingdetect.walking(data[1],count) 
+    print(int(a))
 
     pass
     #list
