@@ -60,7 +60,11 @@ def set_Giro(d, c, b, a) :
 
 class Get_Serial:
     def __init__(self):
+<<<<<<< HEAD
+        self.ser = serial.Serial("COM3", 115200, timeout = 1) # Bound Rate = 460800, get Data rate = 0.01s
+=======
         self.ser = serial.Serial("COM7", 115200, timeout = 1) # Bound Rate = 460800, get Data rate = 0.01s
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
         self.start_time = 0
         self.Roll = kalman.Kalman()
         self.Pitch = kalman.Kalman()

@@ -6,7 +6,6 @@ class Walking():
     start = time.time()
 
 
-<<<<<<< HEAD
     def __init__(self,data):
         self.data = data
 
@@ -31,28 +30,6 @@ class Walking():
             #write_ws['B'] = self.data[1]
             #write_ws['c'] = self.data[2]
             #write_wb.save("Datacell.xsl")
-=======
-def datamanage(self):
-    '''openpyxl 모듈 설치'''
-    n = 40 # 주기 / 0.00001__현재는 임의로 지정
-    a = np.zeros((3,n)) #행렬 초기화
-    f = open('C:\Users\MCU\Tomatocrew_Project-2')
-
-    #write_wb = Workbook()
-
-    #write_ws = write_wb.active
-
-    while 1:
-        a[0].append(self.data[0])
-        a[1].append(self.data[1])
-        a[2].append(self.data[2])
-        f.write(self.data[1])
-
-        #write_ws['A'] = self.data[0]
-        #write_ws['B'] = self.data[1]
-        #write_ws['c'] = self.data[2]
-        #write_wb.save("C:\Users\MCU\Tomatocrew_Project-2")
->>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
 
         
 

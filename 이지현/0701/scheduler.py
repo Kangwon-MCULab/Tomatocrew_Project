@@ -7,18 +7,33 @@ import pandas as pd
  
 timerCount1ms=0
 global data
+<<<<<<< HEAD
+
+global count
+count=0
+
+global  R_data
+R_data=[]
+
+=======
 count =0
 global  R_data
 R_data=[]
 global T_data
 T_data=[]
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
-
+'''
 def operation_10us():
 
+<<<<<<< HEAD
+    R_data.append(data[1])
+    R=np.array(R_data)
+=======
     # R_data.append(int(data[0]))
     # R=np.array(R_data)
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
   
     # np.save('R_data',R)
     # data2=np.load('R_data.npy')
@@ -28,6 +43,7 @@ def operation_10us():
     # print(data)
         
     pass
+'''
 def operation_1ms():
 
     pass
@@ -35,6 +51,17 @@ def operation_5ms():
 
     pass
 def operation_10ms():
+    if(data[0] == 0 and data[1] == 1 and data[2] == 0):
+        pass
+    else:
+        R_data.append(data[1])
+        now = time.time()
+        print(int(data[1]),"==========",now - start)
+        R=np.array(R_data)
+    
+        np.save('R_data',R)
+    
+
     
    
     
@@ -139,12 +166,27 @@ class Scheduler:
             idle()
 
     def run(self):
+<<<<<<< HEAD
+        global start
+        start = time.time()
+
+=======
         start = time.time()
         count = 0
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
         while 1:
+            
             timerCounter()
+<<<<<<< HEAD
+            '''
+            if timerCount1ms % 0.001 == 0:
+                operation_10us()
+            '''
+=======
            
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
             if timerCount1ms % 5 == 0:
+                
                 operation_5ms()
             if timerCount1ms % 10 == 0:
                 operation_10ms()
