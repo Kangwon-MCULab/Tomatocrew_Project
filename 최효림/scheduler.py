@@ -2,7 +2,7 @@ import time
 import os
 import Get_Serial
 import numpy as np
-import Walking
+#import Walking
  
 timerCount1ms=0
 global ee
