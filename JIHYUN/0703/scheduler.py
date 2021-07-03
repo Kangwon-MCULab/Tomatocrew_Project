@@ -1,4 +1,4 @@
-import datetime
+import datetime 
 import time
 import os
 import Get_Serial
@@ -10,7 +10,7 @@ global ee
 ee=0
 global data
 serial = Get_Serial.Get_Serial()
-data = [0,0,0,0,0]
+data = [0,0,0]
 global a 
 a = np.zeros((1,40))
 global f
@@ -23,22 +23,17 @@ def operation_1ms():
 def operation_5ms(count,counttime):
   
     if data == [0,0,0]:
-        global qdata
-        qdata=time.time()
         pass
     else :
-        
 
         global f
-        now = datetime.datetime.now()
-        end = time.time()
-        start=end-counttime
-        ssidata=time.time()-qdata
+        #now = datetime.datetime.now()
+        now=time.time()
+        start=now-counttime
         
-        print(start,"\t",ssidata)
-    
+        print(start,"\t",count)
         data_temp =[]
-        data_temp = str(start)+"\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
+        data_temp = str(count)+"\t"+str(now)+"\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
 
 
         f.write(data_temp)
@@ -80,14 +75,14 @@ def operation_5ms(count,counttime):
 
     pass
 def operation_10ms():
-    if data == []:
-        pass
-    else:
-        print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]),"\t",int(data[3]))
+    
     pass
     #list
 def operation_50ms():
-
+    if data == []:
+        pass
+    else:
+        print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
     pass
     #list
 def operation_100ms():
@@ -139,7 +134,8 @@ class Scheduler:
     def run(self):
         global count
         global counttime
-        counttime=time.time()
+        counttime=time.time()+10
+        
         count=0
         
         
@@ -149,8 +145,8 @@ class Scheduler:
             if timerCount1ms % 5 == 0:
                 operation_5ms(count,counttime)                
                 count+=1
-                if count==1:
-                    counttime==datetime.datetime.now()
+                if count==127:
+                    counttime==time.time()
             if timerCount1ms % 10 == 0:
                 
                 operation_10ms()

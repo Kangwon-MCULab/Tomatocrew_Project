@@ -70,7 +70,6 @@ class Get_Serial:
 
     def SendCommand(self,command):
         print("Connecting deivces. Please wait 10 seconds..")
-        aw=time.time()
         time.sleep(7)
         self.ser.write(bytes(command,encoding='ascii')) # START COMMAND
         print("command success!")
@@ -91,7 +90,9 @@ class Get_Serial:
                 self.Pitch.setKalmanAngle(set_Angle_Y(AX, AY, AZ))
                 self.Yaw.setKalmanAngle(0)
                 print("Setting Success")
-                self.wttime=time.time()-aw
+                self.walkingtime = time.time()#ji
+                
+
                 break
         
 
@@ -105,7 +106,6 @@ class Get_Serial:
             return [0, 0, 0]
 
         index = Data[3]
-        TimeStamp = int(Data[7])*pow(255,3) + int(Data[6])*pow(255,2) + int(Data[5])*pow(255,1) + int(Data[4])
         AX = set_ACC(int(Data[11]), int(Data[10]), int(Data[9]), int(Data[8]))
         AY = set_ACC(int(Data[15]), int(Data[14]), int(Data[13]), int(Data[12]))
         AZ = set_ACC(int(Data[19]), int(Data[18]), int(Data[17]), int(Data[16]))
@@ -125,9 +125,10 @@ class Get_Serial:
         R = round(self.Roll.getKalmanAngle(AngleAX, GX, dt))
         P = round(self.Pitch.getKalmanAngle(AngleAY, GY, dt))
         Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*16.5, GZ, dt))
-        Z = self.wttime
+      
+    
 
-        return [R, P, Y, TimeStamp,Z]
+        return [R, P, Y%360]
        
 
         
