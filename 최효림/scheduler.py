@@ -1,52 +1,37 @@
+import datetime
 import time
 import os
 import Get_Serial
 import numpy as np
-import walking
+
  
 timerCount1ms=0
+global ee
+ee=0
 global data
-
-global count
-count=0
-
-global  R_data
-R_data=[]
-
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
-'''
-def operation_10us():
-    end = time.time()
+global a 
+a = np.zeros((1,40))
+global f
+f = open("주기를 구해볼게.txt",'w')
 
-    R_data.append(data[1])
-    R=np.array(R_data)
-  
-    np.save('R_data',R)
-    data2=np.load('R_data.npy')
-    if end==1:#걷기 주기 끝나는 시간
-        print(data2)
-        pass
-    pass
-'''
+
 def operation_1ms():
 
     pass
 def operation_5ms():
+    global f
+    now = datetime.datetime.now()
+    data_temp =[]
+    data_temp = str(now) + "\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
+
+
+    f.write(data_temp)
+
 
     pass
 def operation_10ms():
-    if(data[0] == 0 and data[1] == 1 and data[2] == 0):
-        pass
-    else:
-        R_data.append(data[1])
-        now = time.time()
-        print(int(data[1]),"==========",now - start)
-        R=np.array(R_data)
-    
-        np.save('R_data',R)
-    
-
     
     pass
     #list
@@ -55,16 +40,9 @@ def operation_50ms():
         pass
     else:
         print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
-        
     pass
     #list
 def operation_100ms():
-
-    global walkingdetect
-    global a
-    walkingdetect =walking.walking()
-    a=walkingdetect.walking(data[1],count) 
-    print(int(a))
 
     pass
     #list
@@ -73,7 +51,6 @@ def operation_500ms():
 
     #list  
 def operation_1000ms():
-
     pass
     #list
 
@@ -90,9 +67,19 @@ def timerCounter():
     time.sleep(0.001)
 
 def idle():
+    global ee
+    ee = 1 + ee
     global data
     global serial
+    # if(data[0] == 0)and (data[1]==0)and(data[2]==0):
+    #     pass
+   # else:
+    start = time.time()
     data = serial.get_data()
+    if(ee == 5000):
+        end=time.time()
+        print(end - start)
+        
     pass
 
 class Scheduler:
@@ -102,20 +89,15 @@ class Scheduler:
             idle()
 
     def run(self):
-        global start
-        start = time.time()
-
+        
+        
         while 1:
-            
             timerCounter()
-            '''
-            if timerCount1ms % 0.001 == 0:
-                operation_10us()
-            '''
+            
             if timerCount1ms % 5 == 0:
-                
                 operation_5ms()
             if timerCount1ms % 10 == 0:
+                
                 operation_10ms()
             if timerCount1ms % 50 == 0:
                 operation_50ms()
