@@ -1,10 +1,18 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
 import datetime
 import time
 import os
 import Get_Serial
 import numpy as np
+<<<<<<< HEAD
 
  
+=======
+import Walking
+>>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
 timerCount1ms=0
 global ee
 ee=0
@@ -29,6 +37,74 @@ def operation_5ms():
 
     f.write(data_temp)
 
+<<<<<<< HEAD
+=======
+
+
+def operation_1ms():
+    start = time.time()
+
+    n = 40 # 주기 / 0.00001__현재는 임의로 지정
+    a = np.zeros((1,n)) #행렬 초기화
+    f = open('data.txt')
+
+    
+
+    while 1:
+        a[0].append(data[0])
+        a[1].append(data[1])
+        a[2].append(data[2])
+        
+        f.write(data[1])
+
+        #write_ws['A'] = self.data[0]
+        #write_ws['B'] = self.data[1]
+        #write_ws['c'] = self.data[2]
+        #write_wb.save("C:\Users\MCU\Tomatocrew_Project-2")
+
+    
+
+
+    while 1:
+        data_1 = 0
+        data_2 = 0
+        data_3 = 0
+        data_4 = 0
+        #기울기
+        m1 = 0
+        m2 = 0
+        m3 = 0
+        count = 0 
+        t = 5#주기
+        t_4 = t/4
+        t_3 = t*(3/4)
+
+        if(start == 0):
+            data_1 = data[1]
+            
+
+        if((start %t_4) == 0):
+            data_2 = data[1]
+            m1 = (data_2 - data_1)/t_4
+
+        if((start % t_3) == 0):
+            data_3 = data[1]
+            m2 = (data_3 - data_2)/(t_3 - t_4)
+
+        if((start%t)==0):
+            data_4 = data[1]
+            m3 = (data_4 - data_3)/(t - t_3)
+            start = time.time()
+            
+        
+        if(m1>0 and m2<0 and m3>0):
+            count = count + 1 
+            print("=======================",count,"==============================")
+
+    pass
+def operation_5ms():
+>>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
+>>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
 
     pass
 def operation_10ms():
