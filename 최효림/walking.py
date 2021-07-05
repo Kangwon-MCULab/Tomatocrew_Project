@@ -1,94 +1,29 @@
 import numpy as np
 import time
-from openpyxl import Workbook
-
-class Walking():
-    start = time.time()
 
 
-<<<<<<< HEAD
-    def __init__(self,data):
-        self.data = data
+class walking():
+    t = 1.2
+    n = t/0.00001
+    MAX = 0
+    MIN = 0
+    m = [0,0,0]
+    count = 0
+    data_w = np.zeros(1,n)
 
-    def datamanage(self):
-        '''openpyxl 모듈 설치'''
-        n = 40 # 주기 / 0.00001__현재는 임의로 지정
-        a = np.zeros((1,n)) #행렬 초기화
-        f = open('dataSave.txt')
+    def dataSetting(self,data):
         
-        #write_wb = Workbook()
-
-        #write_ws = write_wb.active
-
-        while 1:
-            #a[0].append(self.data[0])
-            a.append(self.data[1])
-            #a[2].append(self.data[2])
-            np.save('C:\Users\HyoRimChoi\Tomatocrew_Project\최효림\dataSave.txt',a)
-            f.write(int(self.data[1]))
-
-            #write_ws['A'] = self.data[0]
-            #write_ws['B'] = self.data[1]
-            #write_ws['c'] = self.data[2]
-            #write_wb.save("Datacell.xsl")
-=======
-def datamanage(self):
-    '''openpyxl 모듈 설치'''
-    n = 40 # 주기 / 0.00001__현재는 임의로 지정
-    a = np.zeros((3,n)) #행렬 초기화
-    f = open('C:\Users\MCU\Tomatocrew_Project-2')
-
-    #write_wb = Workbook()
-
-    #write_ws = write_wb.active
-
-    while 1:
-        a[0].append(self.data[0])
-        a[1].append(self.data[1])
-        a[2].append(self.data[2])
-        f.write(self.data[1])
-
-        #write_ws['A'] = self.data[0]
-        #write_ws['B'] = self.data[1]
-        #write_ws['c'] = self.data[2]
-        #write_wb.save("C:\Users\MCU\Tomatocrew_Project-2")
->>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
-
+        self.data_w.append(data[1])
         
+    def checkMaxMin(self):
+        for i in self.data_w:
+            if( i < i+1):
+                self.MAX = i+1
+                self.MIN = i
 
-    def datadiscriminate(self):
-        while 1:
-            data_1 = 0
-            data_2 = 0
-            data_3 = 0
-            data_4 = 0
-            #기울기
-            m1 = 0
-            m2 = 0
-            m3 = 0
-            count = 0 
-            t = 5#주기
-            t_4 = t/4
-            t_3 = t*(3/4)
+        self.data_w = np.zeros(1,self.n)
 
-            if(start == 0):
-                data_1 = self.data[1]
-                
-
-            if((start %t_4) == 0):
-                data_2 = self.data[1]
-                m1 = (data_2 - data_1)/t_4
-
-            if((start % t_3) == 0):
-                data_3 = self.data[1]
-                m2 = (data_3 - data_2)/(t_3 - t_4)
-
-            if((start%t)==0):
-                data_4 = self.data[1]
-                m3 = (data_4 - data_3)/(t - t_3)
-                start = time.time()
-                
-            
-            if(m1>0 and m2<0 and m3>0):
-                count = count + 1 
-                print("=======================",count,"==============================")
+    def discriminant(self):
+        if(self.data_w[0]<self.MAX  and  self.MAX>self.MIN  and  self.data_w[39]> self.MIN):
+            self.count = self.count + 1
+            print("=====================================",self.count)
