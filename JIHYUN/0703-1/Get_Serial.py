@@ -60,7 +60,7 @@ def set_Giro(d, c, b, a) :
 
 class Get_Serial:
     def __init__(self):
-        self.ser = serial.Serial("COM3", 115200, timeout = 1) # Bound Rate = 460800, get Data rate = 0.01s
+        self.ser = serial.Serial("COM7", 115200, timeout = 1) # Bound Rate = 460800, get Data rate = 0.01s
         self.start_time = 0
         self.Roll = kalman.Kalman()
         self.Pitch = kalman.Kalman()
@@ -90,6 +90,9 @@ class Get_Serial:
                 self.Pitch.setKalmanAngle(set_Angle_Y(AX, AY, AZ))
                 self.Yaw.setKalmanAngle(0)
                 print("Setting Success")
+                self.walkingtime = time.time()#ji
+                
+
                 break
         
 
@@ -122,6 +125,8 @@ class Get_Serial:
         R = round(self.Roll.getKalmanAngle(AngleAX, GX, dt))
         P = round(self.Pitch.getKalmanAngle(AngleAY, GY, dt))
         Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*16.5, GZ, dt))
+      
+    
 
         return [R, P, Y%360]
        
