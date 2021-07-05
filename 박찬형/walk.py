@@ -9,15 +9,17 @@ class detectwalk :
         self.downpeek = 0
         self.sign1 = 0
         self.sign2 = 0
+        self.reset_cnt = 0
+        self.reset_walking_cnt = 0
 
     def detecting(self,data) :
         self.nowdata = int(data)
 
         if((self.nowdata - self.predata) > 0):
-            self.sing2 = 1
+            self.sign2 = 1
 
         if((self.nowdata - self.predata) < 0):
-            self.sing2 = 2
+            self.sign2 = 2
 
         if(self.sign2 == 1)and(self.sign1 == 2):
             self.downpeek = self.predata
@@ -30,11 +32,17 @@ class detectwalk :
                 self.walking_cont = self.walking_cont + 1
                 self.downpeek = 0
                 self.uppeek = 0
-
-        print(self.uppeek,self.downpeek,self.nowdata,self.predata,self.sign2,self.sign1)
         
         self.predata = self.nowdata
         self.sign1 = self.sign2
 
     def get_conut(self) :
         return self.walking_cont
+
+    def reset_count(self) :
+        if(self.reset_walking_cnt == self.walking_cont):
+            self.reset_cnt += 1
+        if(self.reset_cnt == 10):
+            self.walking_cont = 0
+            self.reset_cnt = 0
+        self.reset_walking_cnt = self.walking_cnt

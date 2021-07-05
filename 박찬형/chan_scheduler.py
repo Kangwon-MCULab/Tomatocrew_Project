@@ -39,6 +39,7 @@ def operation_500ms():
     #list  
 def operation_1000ms():
     print(walking.get_conut())
+    walking.reset_count()
     pass
     #list
 
