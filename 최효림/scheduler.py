@@ -1,21 +1,10 @@
-<<<<<<< HEAD
+
 import datetime
-=======
->>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
 import time
 import os
 import Get_Serial
 import numpy as np
-<<<<<<< HEAD
-#import Walking
-=======
-<<<<<<< HEAD
-
-=======
 import Walking
->>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
->>>>>>> 4d98333b64174efda0c959aea8637c76d61333dd
- 
 timerCount1ms=0
 global ee
 ee=0
@@ -41,7 +30,7 @@ def operation_5ms():
 
     f.write(data_temp)
 
-=======
+
 
 def operation_1ms():
     start = time.time()
