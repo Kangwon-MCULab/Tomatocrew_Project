@@ -30,7 +30,7 @@ class detectwalk :
 
         if(self.downpeek != 0)and(self.uppeek != 0):
             print(self.uppeek - self.downpeek,'차이값')
-            if(self.uppeek - self.downpeek > 18):
+            if(self.uppeek - self.downpeek > 35):
                 print('차이값 통과')
                 self.walking_cont = self.walking_cont + 1
                 self.downpeek = 0
