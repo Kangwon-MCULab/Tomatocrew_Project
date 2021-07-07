@@ -1,28 +1,22 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
 import datetime
 import time
 import os
 import Get_Serial
 import numpy as np
-<<<<<<< HEAD
 
- 
-=======
+import walking
 import Walking
->>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
 timerCount1ms=0
 global ee
 ee=0
 global data
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
+
 global a 
 a = np.zeros((1,40))
 global f
-f = open("주기데이터.txt",'w')
+f = open("주기를 구해볼게.txt",'w')
 
 
 def operation_1ms():
@@ -32,13 +26,10 @@ def operation_5ms():
     global f
     now = datetime.datetime.now()
     data_temp =[]
-    data_temp = str(now) +"\t"+ str(data[1]) + '\n'
+    data_temp = str(now) + "\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
 
 
     f.write(data_temp)
-
-<<<<<<< HEAD
-=======
 
 
 def operation_1ms():
@@ -103,12 +94,12 @@ def operation_1ms():
 
     pass
 def operation_5ms():
->>>>>>> 38549db08cb789baab51b4797bc80589bcf2b754
->>>>>>> b4e73f0be06a0c4f69e7d016ae352cabac886f98
+
 
     pass
 def operation_10ms():
     
+
     pass
     #list
 def operation_50ms():
@@ -165,11 +156,14 @@ class Scheduler:
             idle()
 
     def run(self):
-        
-        
+
         while 1:
             timerCounter()
-            
+            w = walking()
+            w.dataSetting(data)
+            w.checkMaxMin()
+            w.discriminant()
+
             if timerCount1ms % 5 == 0:
                 operation_5ms()
             if timerCount1ms % 10 == 0:
@@ -183,3 +177,4 @@ class Scheduler:
                 operation_500ms()
             if timerCount1ms % 1000 == 0:
                 operation_1000ms()
+

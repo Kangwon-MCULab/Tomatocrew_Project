@@ -12,7 +12,7 @@ global data
 serial = Get_Serial.Get_Serial()
 data = [0,0,0]
 global f
-f = open("주기를 구해볼게.txt",'w')
+f = open("Walking Cycle.txt",'w')
 
 
 def operation_1ms():
@@ -37,7 +37,7 @@ def operation_5ms(count,counttime):
         end = time.time()
         start=round((end-counttime),1)
         now=datetime.datetime.now()
-        #print(start)
+        print(start)
         
        
         data_temp =[]
