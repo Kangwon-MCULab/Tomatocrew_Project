@@ -29,7 +29,9 @@ class detectwalk :
             self.uppeek = self.predata
 
         if(self.downpeek != 0)and(self.uppeek != 0):
+            print(self.uppeek - self.downpeek,'차이값')
             if(self.uppeek - self.downpeek > 18):
+                print('차이값 통과')
                 self.walking_cont = self.walking_cont + 1
                 self.downpeek = 0
                 self.uppeek = 0
@@ -41,6 +43,7 @@ class detectwalk :
         return self.walking_cont
 
     def reset_count(self) : 
+       
         if(self.reset_walking_cnt == self.walking_cont): # reset.walking_cnt는 walking_cont와 비교하여 같으면(detecting에서 walking_cont가 증가하지 않으면, 즉 uppeek와 downpeek가 구해지지 않으면(팔에 흔들림이 없으면)) reset_cnt 증가
             self.reset_cnt += 1 #reset_cnt가 10이 되면 걸음이 끝났다고 인식 
             self.cnt_reset = 0 #걷지 않은 상태로 들어가면 cnt_reset을 0으로 초기화
