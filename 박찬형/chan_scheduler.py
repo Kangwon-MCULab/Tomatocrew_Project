@@ -4,20 +4,26 @@ import chan_Get_Serial
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
+import keyboard
 import walk
-
+import datetime
+import pandas as pd
  
 timerCount1ms=0
 data = [0,0,0]
 serial = chan_Get_Serial.Get_Serial()
 walking = walk.detectwalk()
+flag_a = False
+datalist = []
 
 def operation_1ms():
 
     pass
 def operation_5ms():
+    time_now = str(datetime.datetime.now().time())
     
+    write_data = [time_now,str(data[0]),str(data[1]),str(data[2])]
+    datalist.append(write_data)
     pass
 def operation_10ms():
     
@@ -27,6 +33,7 @@ def operation_50ms():
     if data == []:
         pass
     else:
+        
         print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
         walking.detecting(data[2])
     pass 
@@ -35,10 +42,11 @@ def operation_100ms():
     pass
     #list
 def operation_500ms():
+    print(walking.get_conut())
+    walking.reset_count()
     pass 
     #list  
 def operation_1000ms():
-    print(walking.get_conut())
     pass
     #list
 
@@ -68,8 +76,9 @@ class Scheduler:
             idle()
 
     def run(self):
+        
         while 1:
-            timerCounter()   #이 아래것들은 5ms당 10ms당 50ms당 100ms당 500ms당 1000ms당 오퍼레이션 ?ms함수 소환
+            timerCounter()  
             if timerCount1ms % 5 == 0:
                 operation_5ms()
             if timerCount1ms % 10 == 0:
@@ -82,5 +91,9 @@ class Scheduler:
                 operation_500ms()
             if timerCount1ms % 1000 == 0:
                 operation_1000ms()
+            if keyboard.is_pressed('f'):
+                dataframe = pd.DataFrame(datalist,columns = ["time","pitch","roll","yaw"])
+                dataframe.to_csv("data.csv",index = False)
+                
 
 
