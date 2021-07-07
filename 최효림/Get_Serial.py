@@ -126,7 +126,7 @@ class Get_Serial:
         P = round(self.Pitch.getKalmanAngle(AngleAY, GY, dt))
         Y = round(self.Yaw.getKalmanAngle(self.Giro_Yaw*16.5, GZ, dt))
 
-        return [R, P, Y%360]
+        return [R, P, Y , AX , AY,AZ]
        
 
         
