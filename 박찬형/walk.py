@@ -32,8 +32,9 @@ class detectwalk :
             if(self.uppeek - self.downpeek > 30): #박찬형 기준으로 피크 투 피크가 30 이상일 때 걸을 때의 팔 흔들림으로 볼 수 있음
                 print('차이값 통과')
                 self.arm_swing_cnt = self.arm_swing_cnt + 1
-                self.downpeek = 0
-                self.uppeek = 0
+            self.downpeek = 0
+            self.uppeek = 0    
+            
 
         if(self.arm_swing_cnt == 8): # 빠른 걷기 측정을 위해 수치를 낮게 잡아둠 충분히 걸었을 때 뜨게 하려면 8을 더 높은 값으로 설정하면 됨
             print('걷기 중입니다.')
@@ -53,12 +54,12 @@ class detectwalk :
         else:
             self.cnt_reset += 1 # cnt_reset은 다시 걷기 시작하면 reset_cnt를 초기화하기 위한 목적
 
-        if(self.cnt_reset == 5):
+        if(self.cnt_reset == 5): # 멈췄다 다시 걸을 때 걷기 종료를 위한 카운트를 초기화 하기 위한 카운트로 실제 걸음으르 생각하면 5보다 높게 잡으면 됨
             self.reset_cnt = 0
             self.cnt_reset = 0
             
         if(self.reset_cnt == 10): # 빠른 걷기 중단 측정을 위해 수치를 낮게 잡아둠 더 오래 가만히 있을 때 뜨게 하려면 10을 더 높은 값으로 설정하면 됨
-            print("걷기 종료.")
+            print("걷기 종료. ", self.arm_swing_cnt*2, "보 걸었습니다.")
             self.arm_swing_cnt = 0
             self.reset_cnt = 0
 

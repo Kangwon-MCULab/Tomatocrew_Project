@@ -14,6 +14,7 @@ data = [0,0,0]
 serial = chan_Get_Serial.Get_Serial()
 walking = walk.detectwalk()
 datalist = []
+flag_save=False
 
 def operation_1ms():
 
@@ -43,10 +44,10 @@ def operation_100ms():
     pass
     #list
 def operation_500ms(): 
-    print(walking.get_swing_conut())
     pass 
     #list  
 def operation_1000ms():
+    print(walking.get_swing_conut())
     walking.reset_count()
     pass
     #list
@@ -76,8 +77,9 @@ class Scheduler:
         while 1:
             idle()
 
+
     def run(self):
-        
+        global flag_save
         while 1:
             timerCounter()  
             if timerCount1ms % 5 == 0:
@@ -92,7 +94,11 @@ class Scheduler:
                 operation_500ms()
             if timerCount1ms % 1000 == 0:
                 operation_1000ms()
-            if keyboard.is_pressed('f'): #f를 누른 순간까지만 기록 이후 다시 기록할 수는 없음 / ODYSSEY에선 이것 때문에 오류가 나서 안씀
+            if keyboard.is_pressed('f') and flag_save==False:
+                flag_save=True
+                print("save!!!!!!!!!!!!!!!!!!!")
                 dataframe = pd.DataFrame(datalist,columns = ["time","pitch","roll","yaw"])
-                dataframe.to_csv("data.csv",index = False)
+                dataframe.to_csv("data"+str(datetime.datetime.now().time())+".csv",index = False) #f를 누른 순간까지만 기록 이후 다시 기록할 수는 없음
+                time.sleep(3)
+                
                 
