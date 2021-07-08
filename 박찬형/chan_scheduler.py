@@ -13,17 +13,13 @@ timerCount1ms=0
 data = [0,0,0]
 serial = chan_Get_Serial.Get_Serial()
 walking = walk.detectwalk()
-flag_a = False
 datalist = []
 
 def operation_1ms():
 
     pass
 def operation_5ms():
-    time_now = str(datetime.datetime.now().time())
     
-    write_data = [time_now,str(data[0]),str(data[1]),str(data[2])]
-    datalist.append(write_data)
     pass
 def operation_10ms():
     
@@ -36,17 +32,22 @@ def operation_50ms():
         
         print(int(data[0]),"\t",int(data[1]),"\t",int(data[2]))
         walking.detecting(data[2])
+    
+    time_now = str(datetime.datetime.now().time())
+    
+    write_data = [time_now,str(data[0]),str(data[1]),str(data[2])]
+    datalist.append(write_data)
     pass 
     #list
 def operation_100ms():
     pass
     #list
-def operation_500ms():
-    print(walking.get_conut())
-    walking.reset_count()
+def operation_500ms(): 
+    print(walking.get_swing_conut())
     pass 
     #list  
 def operation_1000ms():
+    walking.reset_count()
     pass
     #list
 
@@ -91,9 +92,7 @@ class Scheduler:
                 operation_500ms()
             if timerCount1ms % 1000 == 0:
                 operation_1000ms()
-            if keyboard.is_pressed('f'):
+            if keyboard.is_pressed('f'): #f를 누른 순간까지만 기록 이후 다시 기록할 수는 없음 / ODYSSEY에선 이것 때문에 오류가 나서 안씀
                 dataframe = pd.DataFrame(datalist,columns = ["time","pitch","roll","yaw"])
                 dataframe.to_csv("data.csv",index = False)
                 
-
-
