@@ -11,10 +11,7 @@ import sit
 timerCount1ms=0
 global data
 serial = Get_Serial.Get_Serial()
-data = [0,0,0]
 
-global a 
-a = np.zeros((1,40))
 data = [0,0,0,0,0,0]
 global f
 f = open("주기를 구해볼게.txt",'w')
@@ -26,7 +23,7 @@ def operation_1ms():
 
     
 def operation_5ms():
-    '''
+
     global f
     now = datetime.datetime.now()
    
@@ -35,37 +32,6 @@ def operation_5ms():
 
 
     f.write(data_temp)
-
-
-def operation_1ms():
-    start = time.time()
-
-    n = 40 # 주기 / 0.00001__현재는 임의로 지정
-    a = np.zeros((1,n)) #행렬 초기화
-    f = open('data.txt')
-
-    
-
-    while 1:
-        a[0].append(data[0])
-        a[1].append(data[1])
-        a[2].append(data[2])
-        
-        f.write(data[1])
-
-        #write_ws['A'] = self.data[0]
-        #write_ws['B'] = self.data[1]
-        #write_ws['c'] = self.data[2]
-        #write_wb.save("C:\Users\MCU\Tomatocrew_Project-2")
-
-    
-
-    data_temp = (str(now) + "\t"+ str(data[1]) +'\n')
-
-    f.write(data_temp)
-    '''
-    pass
-def operation_5ms():
 
 
 def operation_10ms():
@@ -123,13 +89,6 @@ class Scheduler:
             idle()
 
     def run(self):
-
-        while 1:
-            timerCounter()
-            w = walking()
-            w.dataSetting(data)
-            w.checkMaxMin()
-            w.discriminant()
         global s 
         s = sit.sit()
    
