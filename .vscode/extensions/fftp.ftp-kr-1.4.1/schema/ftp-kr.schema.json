@@ -1,0 +1,101 @@
+{
+	"allOf": [{"$ref": "server.schema.json"}],
+	"type": "object",
+    "properties": {
+		"closure": {
+			"deprecationMessage": "Closure Compiler feature is splitted. If you want to use, Please download Closure Compiler extension."
+		},
+		"disableFtp": {
+			"deprecationMessage": "This option is deleted"
+		},
+		"altServer": {
+			"type": "array",
+			"description": "alternate servers. It has similar properties with root manifest",
+			"items": {
+				"type": "object",
+				"allOf": [{"$ref": "server.schema.json"}],
+				"properties": {
+					"name":{
+						"type":"string",
+						"description": "Display name for alternate server"
+					}
+				}
+			}
+		},
+		"createSyncCache": {
+			"type": "boolean",
+			"description": "Create ftp-kr.cache.json file to save remote modification (default: true)",
+			"default": true
+		},
+		"followLink":{
+			"type": "boolean",
+			"description":"If it is true, extension will access symlink target or ignore symlink (default: false)",
+			"default": false
+		},
+		"localBasePath":{
+			"type": "string",
+			"desciption": "Set local directory to sync (default: workspace root)"
+		},
+        "autoUpload": {
+            "type": "boolean",
+            "description": "Upload file by watcher (default: false)",
+			"default": false
+        },
+        "autoDelete": {
+            "type": "boolean",
+            "description": "Delete FTP file on delete in workspace (default: false)",
+			"default": false
+        },
+		"autoDownload": {
+			"type": "boolean",
+			"description": "It will check modification of every opening and download if it modified (default: false)",
+			"default": false
+		},
+		"autoDownloadAlways": {
+			"type": "number",
+			"description": "Check server modification at set time intervals and download it. If it is zero, feature is disabled (default: 0)",
+			"default": 0
+		},
+		"viewSizeLimit": {
+			"type": "number",
+			"description": "Bytes. File download size limit in ftp tree view (default: 4MiB)",
+			"default": 4194304
+		},
+		"downloadTimeExtraThreshold": {
+			"type": "number",
+			"description": "Milliseconds. To avoid upload just downloaded file (default: 1000)",
+			"default": 1000
+		},
+		"ignoreRemoteModification": {
+			"type": "boolean",
+			"description": "Disable remote modification checker",
+			"default": false
+		},
+		"ignoreJsonUploadCaution": {
+			"type":"boolean",
+			"description": "ignore caution when ftp-kr.json is uploaded",
+			"default:": false
+		},
+		"noticeFileCount": {
+			"type":"number",
+			"description": "Notice with task.json if upload/download file is too many",
+			"default": 10
+		},
+		"logLevel": {
+			"enum": [
+				"VERBOSE",
+				"NORMAL"
+			],
+            "description": "Log level setting for debug (default: NORMAL)",
+			"default": "NORMAL"
+		},
+		"ignore": {
+			"type": "array",
+			"description": "Ignore file or directory list. Is NOT glob pattern",
+			"items": {
+				"type": "string",
+				"description": "Ignore file or directory"
+			}
+		}
+    }
+}

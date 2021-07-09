@@ -1,0 +1,255 @@
+{
+	"name": "ftp-kr",
+	"displayName": "ftp-kr",
+	"description": "FTP/SFTP Sync Extension",
+	"license": "MIT",
+	"version": "1.4.1",
+	"icon": "images/icon.png",
+	"publisher": "fftp",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/deeyi/ftp-kr"
+	},
+	"bugs": "https://github.com/deeyi/ftp-kr/issues",
+	"engines": {
+		"vscode": "^1.17.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"workspaceContains:.vscode/ftp-kr.json",
+		"onCommand:ftpkr.init"
+	],
+	"main": "./out/index",
+	"contributes": {
+		"commands": [
+			{
+				"command": "ftpkr.init",
+				"title": "Init",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.cancel",
+				"title": "Cancel All",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.uploadAll",
+				"title": "Upload All",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.downloadAll",
+				"title": "Download All",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.upload",
+				"title": "Upload This",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.download",
+				"title": "Download This",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.delete",
+				"title": "Delete This",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.diff",
+				"title": "Diff This",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.refresh",
+				"title": "Refresh",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.cleanAll",
+				"title": "Clean All",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.list",
+				"title": "List",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.view",
+				"title": "View",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.reconnect",
+				"title": "Reconnect",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.runtask",
+				"title": "Run task.json",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.target",
+				"title": "Target",
+				"category": "ftp-kr"
+			},
+			{
+				"command": "ftpkr.ssh",
+				"title": "SSH",
+				"category": "ftp-kr"
+			}
+		],
+		"jsonValidation": [
+			{
+				"fileMatch": "ftp-kr.json",
+				"url": "./schema/ftp-kr.schema.json"
+			},
+			{
+				"fileMatch": "make.json",
+				"url": "./schema/make.schema.json"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "ftpkr.upload",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.download",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.delete",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.diff",
+					"group": "ftp-kr.navigation"
+				}
+			],
+			"view/title": [
+				{
+					"command": "ftpkr.refresh",
+					"when": "view == ftpkr.explorer",
+					"group": "navigation"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "ftpkr.upload",
+					"group": "ftp-kr.action",
+					"when": "!inOutput"
+				},
+				{
+					"command": "ftpkr.download",
+					"group": "ftp-kr.action",
+					"when": "!inOutput"
+				},
+				{
+					"command": "ftpkr.delete",
+					"group": "ftp-kr.action",
+					"when": "!inOutput"
+				},
+				{
+					"command": "ftpkr.diff",
+					"group": "ftp-kr.navigation",
+					"when": "!inOutput"
+				},
+				{
+					"command": "ftpkr.refresh",
+					"when": "resourceScheme == sftp",
+					"group": "ftp-kr.navigation"
+				},
+				{
+					"command": "ftpkr.refresh",
+					"when": "resourceScheme == ftp",
+					"group": "ftp-kr.navigation"
+				},
+				{
+					"command": "ftpkr.refresh",
+					"when": "resourceScheme == ftps",
+					"group": "ftp-kr.navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "ftpkr.upload",
+					"when": "view == ftpkr.explorer",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.download",
+					"when": "view == ftpkr.explorer",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.delete",
+					"when": "view == ftpkr.explorer",
+					"group": "ftp-kr.action"
+				},
+				{
+					"command": "ftpkr.diff",
+					"when": "view == ftpkr.explorer",
+					"group": "ftp-kr.navigation"
+				},
+				{
+					"command": "ftpkr.refresh",
+					"when": "view == ftpkr.explorer",
+					"group": "ftp-kr.navigation"
+				}
+			]
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "ftpkr.explorer",
+					"name": "ftp-kr: Explorer"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"mdgen": "node ./out/tool/schema_to_md.js ./schema/ftp-kr.schema.json"
+	},
+	"dependencies": {
+		"ftp": "^0.3.10",
+		"glob": "7.1.0",
+		"iconv-lite": "0.4.13",
+		"krfile": "^1.0.3",
+		"krjson": "^1.0.3",
+		"node-ipc": "^9.1.1",
+		"read": "^1.0.7",
+		"source-map": "^0.7.2",
+		"ssh2": "^0.5.5",
+		"strip-json-comments": "2.0.1"
+	},
+	"devDependencies": {
+		"@types/ftp": "^0.3.29",
+		"@types/glob": "^5.0.35",
+		"@types/iconv-lite": "0.0.1",
+		"@types/mocha": "^2.2.48",
+		"@types/node": "^6.0.100",
+		"@types/node-ipc": "^9.1.0",
+		"@types/read": "0.0.28",
+		"@types/source-map": "^0.5.7",
+		"@types/ssh2": "^0.5.35",
+		"@types/strip-json-comments": "0.0.28",
+		"mocha": "^2.3.3",
+		"typescript": "^2.7.1",
+		"vscode": "^1.1.10"
+	},
+	"__metadata": {
+		"id": "3c6ea04a-c166-46f5-ba55-4a694a328f26",
+		"publisherId": "dae16601-c9df-4775-84e4-f90b0322c93d",
+		"publisherDisplayName": "fftp",
+		"installedTimestamp": 1625753210548
+	}
+}
