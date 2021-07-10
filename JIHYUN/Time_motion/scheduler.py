@@ -14,7 +14,7 @@ data = [0,0,0]
 global a 
 a = np.zeros((1,40))
 global f
-f = open("주기를 구해볼게.txt",'w')
+f = open("Motion data-1.txt",'w')
 
 
 def operation_1ms():
@@ -27,50 +27,17 @@ def operation_5ms(count,counttime):
     else :
 
         global f
-        #now = datetime.datetime.now()
+        
         now=time.time()
         start=now-counttime
         
         print(start,"\t",count)
         data_temp =[]
-        data_temp = str(count)+"\t"+str(now)+"\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
+        data_temp =str(start)+"\t"+ str(data[0]) + "\t"+ str(data[1]) + "\t"+ str(data[2])+'\n'
 
 
         f.write(data_temp)
 
-    #     data_1 = 0
-    #     data_2 = 0
-    #     data_3 = 0
-    #     data_4 = 0
-    #         #기울기
-    #     m1 = 0
-    #     m2 = 0
-    #     m3 = 0
-         
-    #     t = 1.19
-    #     t_4 = t/4
-    #     t_3 = t*(3/4)
-
-    #     if(now==0):
-    #    data_1 = self.data[1]
-                
-
-    #     if((start %t_4) == 0):
-    #   data_2 = self.data[1]
-    #   m1 = (data_2 - data_1)/t_4
-
-    #     if((start % t_3) == 0):
-    #             data_3 = self.data[1]
-    #             m2 = (data_3 - data_2)/(t_3 - t_4)
-
-    #     if((start%t)==0):
-    #     data_4 = self.data[1]
-    #      m3 = (data_4 - data_3)/(t - t_3)
-    #      start = time.time()
-                
-            
-    #     if(m1>0 and m2<0 and m3>0):
-    #     count = count + 1 
 
 
     pass
@@ -114,9 +81,7 @@ def idle():
     ee = 1 + ee
     global data
     global serial
-    # if(data[0] == 0)and (data[1]==0)and(data[2]==0):
-    #     pass
-   # else:
+   
     start = time.time()
     data = serial.get_data()
     if(ee == 5000):
